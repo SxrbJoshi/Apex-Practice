@@ -1,0 +1,170 @@
+public class Oct28_2024 {
+    
+    //Question 1
+    public static Integer medianOfList() {
+        List<Integer> input = new List<Integer>{3, 1, 2, 5, 4};
+        Integer i = 0;
+        for(Integer j : input) {
+            i = i + j;
+        }
+        return i/input.size();
+    }
+    //Question 2
+    public static void addZeroAtEnd() {
+        List<Integer> input = new List<Integer>{1,0,2,0,3};
+        List<Integer> newList = new List<Integer>();
+        Integer x = 0;
+        for(Integer num : input) {
+            if(num == 0) {
+                x++;
+            }
+            else {
+                newList.add(num);
+            }
+        }
+        for(Integer i = 0; i < x; i++) {
+            newList.add(0);
+        }
+        system.debug(newList);
+    }
+    
+    //Question 3
+    public static void reverseList() {
+        List<Integer> input = new List<Integer>{1,2,3,4,3,2,1};
+        List<Integer> reverse = new List<Integer>();
+        Boolean check = true;
+        for(Integer i = input.size() - 1; i >= 0; i--) {
+            reverse.add(input[i]);
+        }
+        for(Integer i = 0; i < input.size(); i++) {
+            if(reverse[i] != input[i]) {
+                check = false;
+            }
+        }
+        if(check == true) {
+            system.debug('The List is palindrome');
+        }
+        else {
+            system.debug('The List is not palindrome');
+        }
+    }
+    
+    //Question 9
+    public static void countList() {
+         List<Integer> input = new List<Integer>{1, 2, 2, 3};
+         Integer x = 0;
+        for(Integer i : input) {
+            x = x + i;
+        }
+        system.debug(x);
+    }
+    
+    //Question 10 ~ Not Completed
+    public static void done() {
+        List<Integer> input = new List<Integer>{4, 5, 2, 10, 8};
+            for(Integer i = 0; i < input.size() - 1; i++) {
+                if(input[i] == input[i + 1]) {
+                    input.add(i, input[i + 1]);
+                }
+            }
+        system.debug(input);
+    }
+    
+    //Question 6
+    public static void pairWithSameDiff(List<Integer> nums, Integer difference) {
+        Set<Integer> numSet = new Set<Integer>(nums);
+        List<List<Integer>> result = new List<List<Integer>>();
+        for (Integer num : nums) {
+            if (numSet.contains(num + difference)) {
+                result.add(new List<Integer>{num, num + difference});
+            }
+        }
+        system.debug(result);
+    }
+    
+    //Question 11 Not Complete
+    public static void mapWithGreaterValue() { 
+        Map<String, Integer> map1 = new Map<String, Integer>();
+        map1.put('A', 1);
+        map1.put('B', 2);
+        List<Integer> map1List = new List<Integer>();
+        
+        Map<String, Integer> map2 = new Map<String, Integer>();
+        map2.put('A', 4);
+        map2.put('B', 1);
+        List<Integer> map2List = new List<Integer>();
+        
+        for(String s : map1.KeySet()) {
+            if(map2.containsKey(s)) {
+                map1List.add(map1.get(s));
+                map2List.add(map2.get(s));
+                
+                for(Integer i = 0; i < map1List.size(); i++) {
+                    if(map1List[i] > map2List[i]) {
+                        system.debug(s);
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Question 5 : Write a method that returns the Kth largest element in a List of integers.
+    public static void kthLargest(Integer k) {
+        List<Integer> input = new List<Integer>{5, 2, 9, 7, 3};
+        input.sort();
+        system.debug(input[k-1]);   
+    }
+    
+    //Question 6 : Given a List of integers, write a method to find the sublist (contiguous elements) with the largest sum.
+    public static void subListMaxSum() {
+        List<Integer> input = new List<Integer>{-2, 1,-3, 4,-1,2, 1,-5, 4};
+            Set<integer> set1 = new Set<Integer>();
+            for(Integer i = 0; i < input.size(); i++) {
+                for(Integer j = 0; j < input.size(); j++) {
+                    if(input[i] < input[j]) {
+                        set1.add(input[i]);
+                    } else {
+                        set1.add(input[i]);
+                    }
+                }
+            }
+            system.debug(set1);
+    }
+    
+    //Question 8
+    public static void reverseConsecutive(Integer k) {
+         List<Integer> input = new List<Integer>{1, 2, 3, 4, 5, 6};
+             List<Integer> finalList = new List<Integer>();
+             for(Integer i = 0; i < input.size(); i+k) {
+                 for(Integer j = k; j < input.size(); j++) {
+                     finalList.add(input[j]);
+                 }
+             }
+        system.debug(finalList);
+    }
+
+    //Question 12 
+    public static void mostFrequentInMap() {
+        List<Integer> input = new List<Integer>{1, 2, 2, 3, 3, 3};
+        Map<Integer, Integer> frequencyMap = new Map<Integer, Integer>();
+        Integer f = 0;
+        Integer e = 0;
+        
+        for(Integer i : input) {
+            if(frequencyMap.containsKey(i)) {
+                frequencyMap.put(i, frequencyMap.get(i) + 1);
+            }
+            else {
+                frequencyMap.put(i, 1);
+            }
+        }
+        for(Integer key : frequencyMap.KeySet()) {
+            Integer j = frequencyMap.get(key);
+            if(j > f) {
+                f = j;
+                e = key;
+            }
+        }
+        system.debug(e);
+    }
