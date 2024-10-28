@@ -168,3 +168,107 @@ public class Oct28_2024 {
         }
         system.debug(e);
     }
+
+//Question 9 : Write a method that checks if a List contains another List as a sublist.
+    public static void listSubList() {
+        List<Integer> input = new List<Integer>{1, 2, 3, 4, 5};
+        List<Integer> sublist = new List<Integer>{3, 4};
+            
+        Set<Integer> set1 = new Set<Integer>();
+        set1.addAll(input);
+        List<Integer> aList = new List<Integer>();
+        for(Integer i : subList) {
+            if(set1.contains(i)) {
+                aList.add(i);
+            }
+        }
+        if(subList.equals(aList)) {
+            system.debug('True');
+        }
+    }
+    
+    //Question 17 : Write a method to count the number of occurrences of each character in a string using a Map.
+    public static void countCharacter(String s) {
+        Map<String, Integer> alphaCount = new Map<String, Integer>();
+        
+        for(Integer i = 0; i < s.length(); i++) {
+            string c = String.valueOf(s.charAt(i));
+            system.debug(c);
+            if(alphaCount.containsKey(c)) {
+                alphaCount.put(c, alphaCount.get(c) + 1);
+            }
+            else {
+                alphaCount.put(c, 1);
+            }
+        }
+        system.debug(alphaCount);
+    }
+    
+    //Question 28 :  Write a method to find the symmetric difference (elements not in both sets) of two Sets.
+    public static void symmetricDiff() {
+        Set<Integer> set1 = new Set<Integer>{1, 2, 3};
+        Set<Integer> set2 = new Set<Integer>{3, 4};
+        Set<Integer> finalSet = new Set<Integer>();
+            for(Integer i : set1) {
+                if(!set2.contains(i)) {
+                    finalSet.add(i);
+                }
+            }
+        for(Integer i : set2) {
+            if(!set1.contains(i)) {
+                finalSet.add(i);
+            }
+        }
+        system.debug(finalSet);
+    }
+    
+    //Question 30 : Write a method that checks if a List contains any duplicates using a Set.
+    public static void setDuplicates() {
+         List<Integer> input = new List<Integer>{1, 2, 3, 2};
+         Set<Integer> set1 = new Set<Integer>();         
+        for(Integer i : input) {
+            if(!set1.contains(i)) {
+                set1.add(i);
+            }
+            else {
+                system.debug('True');
+            }
+        }
+    }
+    
+    //Question 33 :  Given a List of Maps, merge them into a single Map.
+    //               Input:
+    //               List<Map<String, Integer>> list = new List<Map<String,
+    //               Integer>>{new Map<String, Integer>{'A' => 1}, new
+    //               Map<String, Integer>{'B' => 2}};
+    public static void ListMapToMap() {
+        List<Map<String, Integer>> listOfMaps = new List<Map<String, Integer>>();
+        Map<String, Integer> map1 = new Map<String, Integer>();
+        Map<String, Integer> map2 = new Map<String, Integer>();
+        map1.put('A', 1);
+        map2.put('B', 1);
+        
+        listOfMaps.add(map1);
+        listOfMaps.add(map2);
+        Map<String, Integer> finalMap = new Map<String, Integer>();
+        for(Map<String, Integer> i : listOfMaps) {
+            for(String s : i.KeySet()) {
+                if(!finalMap.containsKey(s)) {
+                    finalMap.put(s, i.get(s));
+                }
+            }
+        }
+        system.debug(finalMap);
+    }
+    
+    //Question 34 :  Write a method that flattens a List of Lists into a single List.
+    public static void listNewList() {
+        List<List<Integer>> input = new List<List<Integer>>{new List<Integer>{1, 2}, new List<Integer>{3, 4}};
+                List<Integer> finalList = new List<Integer>();
+        for(List<Integer> iL : input) {
+            for(Integer i : iL) {
+                finalList.add(i);
+            }
+        }
+        system.debug(finalList);
+    }
