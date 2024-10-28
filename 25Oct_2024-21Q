@@ -1,0 +1,294 @@
+public class Oct25_2024 {
+    
+    //Question 1 : Write a method that takes two sorted Lists of integers and merges them into a single sorted List.
+    public static List<Integer> mergeSortedLists(List<Integer> inputList1, List<Integer> inputList2) {
+         List<Integer> mergedList = new List<Integer>();
+         mergedList.addAll(inputList1);
+         mergedList.addAll(inputList2);
+         mergedList.sort();
+         return mergedList; 
+         }
+    
+    //Question 2 : Write a method that returns a List of all duplicate elements in a List.
+    public static List<Integer> findDuplicates(List<Integer> input) {
+        List<Integer> newList = new List<Integer>();
+        List<Integer> duplicates = new List<Integer>();
+        for(Integer i : input) {
+            if(!newList.contains(i)) {
+                newList.add(i);
+            }
+            else {
+                duplicates.add(i);
+            }
+        }
+        return duplicates;
+    }
+    
+    //Question 3 : Rotate a List of integers by K positions to the right.
+    public static void rotateByK(List<Integer> input) {
+        Integer rotation = 3;
+        for(Integer j = 0; j < rotation; j++) {
+            Integer firstElement = input[0];
+            for(integer i = 0; i < input.size()-1; i++) {
+                input[i] = input[i+1];
+            }
+            input[input.size() - 1] =  firstElement;
+        }
+        system.debug(input);
+    }
+    
+    //Question 4 : Write a method that returns a List containing only the elements common to both input Lists.
+    public static List<Integer> intersectionOfLists(List<Integer> input1, List<Integer> input2) {
+        Set<Integer> uniqueValues = new Set<Integer>();
+        uniqueValues.addAll(input1);
+        
+        List<Integer> commonValues = new List<Integer>();
+        
+        for(Integer i : input2) {
+            if(uniqueValues.contains(i)) {
+                commonValues.add(i);
+            }
+        }
+        return commonValues;
+    }
+    
+    //Question 7 : Partition a List of integers into two separate Lists: one for even numbers and one for odd numbers.
+    public static void oddEvenList(List<Integer> input) {
+        List<Integer> odd = new List<Integer>();
+        List<Integer> even = new List<Integer>();
+        for(Integer i : input) {
+            if(math.mod(i, 2) == 0) {
+                even.add(i);
+            }
+            else {
+                odd.add(i);
+            }
+        }
+        system.debug(odd);
+        system.debug(even);
+    }
+    
+    //Question 11 : Write a method that groups elements of a List by their frequency using a Map.
+    public static void mapAsFrequency() {
+        List<Integer> input = new List<Integer>{1,2,2,3,3,3,4};
+            Map<Integer, Integer> intMap = new Map<Integer, Integer>();
+        if(!input.isEmpty()) {
+            for(Integer i : input) {
+                if(intMap.containsKey(i)) {
+                    intMap.put(i, intMap.get(i) + 1);
+                }
+                else {
+                    intMap.put(i, 1);
+                }
+            }   
+        }
+        system.debug(intMap);
+    }
+    
+    //Question 13 : Given a Map, write a method to reverse its keys and values.
+    public static void reversedMap() {
+        Map<String, Integer> initialMap = new Map<String, Integer>();
+        Map<Integer, String> reversedMap = new Map<Integer, String>();
+        initialMap.put('A', 1);
+        initialMap.put('B', 2);
+        initialMap.put('C', 3);
+        for(String s : initialMap.KeySet()) {
+            Integer i = initialMap.get(s);
+            reversedMap.put(i, s);
+        }
+        system.debug('Initial Map : ' + initialMap);
+        system.debug('Reversed Map : ' + reversedMap);
+    }
+    
+    //Question 14 : Merge two Maps. If a key is present in both Maps, sum their values
+    public static void mergeMaps() {
+        Map<String, Integer> input1 = new Map<String, Integer>();
+        Map<String, Integer> input2 = new Map<String, Integer>();
+        Map<String, Integer> mergedMap = new Map<String, Integer>();
+        input1.put('A', 1);
+        input1.put('B', 2);
+        input1.put('C', 3);
+        
+        input2.put('A', 4);
+        input2.put('C', 5);
+        
+        for(String key : input1.keySet()) {
+            if(input2.containsKey(key)) {
+                Integer value = input1.get(key) + input2.get(key);
+                mergedMap.put(key, value);
+            }
+            else {
+                mergedMap.put(key, input1.get(key));
+            }
+        }
+        system.debug('Input1 Map : ' + input1);
+        system.debug('Input2 Map : ' + input2);
+        system.debug('Merged Map : ' + mergedMap);
+    }
+    
+    //Question 16 : Write a method to sort a Map by its keys in ascending order.
+    public static void sortMap() {
+        Map<String, Integer> input = new Map<String, Integer>{'B' => 25, 'C' => 10, 'A' => 15};
+            //input.put('B', 2);
+            //input.put('A', 1);
+            //input.put('C', 3);
+            
+            List<String> sortedKeys = new List<String>();
+        sortedKeys.addAll(input.KeySet());
+        sortedKeys.sort();
+        
+        Map<String, Integer> finalMap = new Map<String, Integer>();
+        for(String s : sortedKeys) {
+            finalMap.put(s, input.get(s));
+        }
+        system.debug('Input Map : ' + input);
+        system.debug('Final Map : ' + finalMap);
+    }
+    
+    //Question 17 : Write a method to count the number of occurrences of each character in a string using a Map.
+    public static void splitString() {
+        String word = 'hello';
+        List<String> alphabets = new List<String>();
+        alphabets.addAll(word.split(','));
+        Map<String, Integer> alphaMap = new Map<String, Integer>();
+        
+        for(String s : alphabets) {
+            if(alphaMap.containsKey(s)) {
+                alphaMap.put(s, alphaMap.get(s) + 1);
+            }
+            else {
+                alphaMap.put(s, 1);
+            }
+        }
+        system.debug(alphaMap);
+    }
+    
+    //Question 19 : GivenaMap, write a method that transforms the values by applying a function.
+    public static void transformValues() {
+        Map<String, Integer> input = new Map<String, Integer>{'B' => 25, 'C' => 10, 'A' => 15};
+            system.debug('Old Vaues : ' + input);
+        for(String s : input.KeySet()) {
+            Integer i = input.get(s) * 2;
+            input.put(s, i);
+        }
+        system.debug('New Values : ' + input);
+    }
+    
+    //Question 20 : Write a method that creates a Map from two Lists: one for keys and one for values.
+    public static void mapFromList() {
+        List<String> keys = new List<String>{'A', 'B', 'C'};
+            List<Integer> values = new List<Integer>{1, 2, 3};
+                Map<String, Integer> newMap = new Map<String, Integer>();
+        
+        for(Integer i = 0; i < keys.size(); i++) {
+            newMap.put(keys[i], values[i]);
+        }
+        system.debug(newMap);
+    }
+    
+    //Question 21 :  Write a method to return the union of two Sets.
+    public static void mergeSets() {
+        Set<Integer> set1 = new Set<Integer>{1,2,3};
+            Set<Integer> set2 = new Set<Integer>{3,4,5};
+                
+                Set<Integer> finalSet = new Set<Integer>();
+        finalSet.addAll(set1);
+        finalSet.addAll(set2);
+        system.debug(finalSet);
+    }
+    
+    //Question 22 : Write a method to return the difference between two Sets
+    public static void diffSets() {
+        Set<Integer> set1 = new Set<Integer>{1, 2, 3};
+            Set<Integer> set2 = new Set<Integer>{3, 4};
+                Set<Integer> set3 = new Set<Integer>();
+        for(Integer i : set1) {
+            if(!set2.contains(i)) {
+                set3.add(i);
+            }
+        }
+        system.debug(set3);
+    }
+    
+    //Question 23 : Write a method that checks if two Sets are equal
+    public static void equalSets() {
+        Set<Integer> set1 = new Set<Integer>{1,2,3};
+            Set<Integer> set2 = new Set<Integer>{2,1,3};
+                if(set1.equals(set2)) {
+                    system.debug('true');
+                }
+    }
+    
+    //Question 24 : Write a method to return the intersection of two Sets.
+    public static void intersectingSets() {
+        Set<Integer> input1 = new Set<Integer>{1,2,3};
+            Set<Integer> input2 = new Set<Integer>{2,3,4};
+                Set<Integer> retainedSet = new Set<Integer>();
+        retainedSet.addAll(input1);
+        retainedSet.retainAll(input2);
+        system.debug(retainedSet);
+    }
+    
+    //Question 25 : Write a method that removes duplicates from a List using a Set.
+    public static void setFromList() {
+        List<Integer> input = new List<Integer>{1,2,2,4,4,5};
+            Set<Integer> newSet = new Set<Integer>();
+        newSet.addAll(input);
+        system.debug(newSet);
+    }
+    
+    //Question 26 : Write a method to convert a Set to a List.
+    public static void listFromSet() {
+        Set<Integer> set1 = new Set<integer>{1,2,3,4,5};
+            List<Integer> list1 = new List<Integer>();
+        list1.addAll(set1);
+        system.debug(list1);
+    }
+    
+    //Question 27 : Write a method that checks if one Set is a subset of another Set.
+    public static void checkSubSet() {
+        Set<Integer> set1 = new Set<Integer>{1, 2};
+            Set<Integer> set2 = new Set<Integer>{1, 2, 3};
+                Boolean b = set2.containsAll(set1);
+        system.debug(b);
+    }
+    
+    //Question 30 : Write a method that checks if a List contains any duplicates using a Set.
+    public static void listSet() {
+        List<Integer> input = new List<Integer>{1, 2, 3, 2};
+            Set<Integer> newSet = new Set<Integer>();
+        newSet.addAll(input);
+        for(Integer i : input) {
+            if(newSet.contains(i)) {
+                system.debug(i);
+            }
+        }
+    }
+    
+    //Question 31 : Write a method to find common elements across multiple Lists using Sets.
+    public static void duplicatesInMultipleLists() {
+        List<Integer> list1 = new List<Integer>{1, 2, 3};
+            List<Integer> list2 = new List<Integer>{2, 3, 4};
+                List<Integer> list3 = new List<Integer>{3, 4, 5};
+                    Set<Integer> uniqueValues = new Set<Integer>();
+        uniqueValues.addAll(list1);
+        Set<Integer> newList = new Set<Integer>();
+        for(Integer i : list2) {
+            if(uniqueValues.contains(i)) {
+                newList.add(i);
+            }
+            else {
+                uniqueValues.add(i);
+            }
+        }
+        for(Integer j : list3) {
+            if(uniqueValues.contains(j)) {
+                newList.add(j);
+            }
+            else {
+                uniqueValues.add(j);
+            }
+        }
+        system.debug(newList);
+    }  
+}
