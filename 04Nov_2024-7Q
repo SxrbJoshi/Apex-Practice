@@ -1,0 +1,146 @@
+//Question 1 : Write a method to find the median of a List of integers.
+    public static Integer medianOfList() {
+        List<Integer> input = new List<Integer>{3, 1, 2, 5, 4};
+        Integer i = 0;
+        for(Integer j : input) {
+            i = i + j;
+        }
+        return i/input.size();
+    } 
+    //Question 2 : Write a method that moves all zeroes in a List to the end without changing the order of non-zero elements.
+    public static void addZeroAtEnd() {
+        List<Integer> input = new List<Integer>{1,0,2,0,3};
+        List<Integer> newList = new List<Integer>();
+        Integer x = 0;
+        for(Integer num : input) {
+            if(num == 0) {
+                x++;
+            }
+            else {
+                newList.add(num);
+            }
+        }
+        for(Integer i = 0; i < x; i++) {
+            newList.add(0);
+        }
+        system.debug(newList);
+    }
+    
+    //Question 3 : Write a method that checks if a List of integers is a palindrome.
+    public static void reverseList() {
+        List<Integer> input = new List<Integer>{1,2,3,4,3,2,1};
+        List<Integer> reverse = new List<Integer>();
+        Boolean check = true;
+        for(Integer i = input.size() - 1; i >= 0; i--) {
+            reverse.add(input[i]);
+        }
+        for(Integer i = 0; i < input.size(); i++) {
+            if(reverse[i] != input[i]) {
+                check = false;
+            }
+        }
+        if(check == true) {
+            system.debug('The List is palindrome');
+        }
+        else {
+            system.debug('The List is not palindrome');
+        }
+    }
+    
+    //Question 9 : Count all unique sublists within a List of integers.
+    public static void countList() {
+         List<Integer> input = new List<Integer>{1, 2, 2, 3};
+         Integer x = 0;
+        for(Integer i : input) {
+            x = x + i;
+        }
+        system.debug(x);
+    }
+    
+    //Question 10 ~ Not Completed
+    public static void done() {
+        List<Integer> input = new List<Integer>{4, 5, 2, 10, 8};
+            for(Integer i = 0; i < input.size() - 1; i++) {
+                if(input[i] == input[i + 1]) {
+                    input.add(i, input[i + 1]);
+                }
+            }
+        system.debug(input);
+    }
+    
+    //Question 6 : Write a method that finds all pairs in a List of integers where the difference between elements equals a given number.
+    public static void pairWithSameDiff(List<Integer> nums, Integer difference) {
+        Set<Integer> numSet = new Set<Integer>(nums);
+        List<List<Integer>> result = new List<List<Integer>>();
+        for (Integer num : nums) {
+            if (numSet.contains(num + difference)) {
+                result.add(new List<Integer>{num, num + difference});
+            }
+        }
+        system.debug(result);
+    }
+    //Question 11 : Find keys that are common between two Maps and have maximum values.
+    public static void abcd() {
+        Map<String, Integer> map1 = new Map<String, Integer>{'A' => 1, 'B' => 2};
+            Map<String, Integer> map2 = new Map<String, Integer>{'A' => 3, 'B' => 1};
+                Set<String> set1 = new Set<String>();
+        for(String s : map1.keySet()) {
+            if(map2.containsKey(s)) {
+                if(map2.get(s) >= map1.get(s)) {
+                    set1.add(s);
+                }
+            }
+        }
+        system.debug(set1);
+                }
+    
+    //Question 12 : Write a method that filters Map entries based on the length of the keys.
+    public static void keyWithMaxValue() {
+        Map<String, Integer> inputMap1 = new Map<String, Integer>();
+        Map<String, Integer> newMap = new Map<String, Integer>();
+        inputMap1.put('Apple', 5);
+        inputMap1.put('Fig', 3);
+        for(String s : inputMap1.KeySet()) {
+            if(s.length() == 3) {
+                newMap.put(s, inputMap1.get(s));
+            }
+        }
+        system.debug(newMap);
+    } 
+    
+    //SATURDAY
+    //Question 13 : Find all Maps in a List of Maps that contain a specific key.
+    public static void checkKeyOfMap(String s) {
+        List<Map<String, Integer>> input = new List<Map<String, Integer>>{new Map<String, Integer>{'A' => 1}, new Map<String, Integer>{'B' => 2}};
+            for(Map<String, Integer> m : input) {
+                if(m.containsKey(s)) {
+                    system.debug('Key : ' + s +' Value : ' + m.get(s));
+                }
+            }
+    }
+    
+    //Question 15 : Given a List of Maps, convert it to a Map of Lists, where each key in the original Maps has a List of corresponding values.
+    public static void sssss() {
+        List<Map<String, Integer>> input = new List<Map<String, Integer>>();
+        Map<String, List<Integer>> listMap = new Map<String, List<Integer>>();
+        List<Integer> list1 = new List<Integer>();
+        List<Integer> list2 = new List<Integer>();    
+        input.add(new Map<String, Integer>{'A' => 1});
+        input.add(new Map<String, Integer>{'A' => 2, 'B' => 3});
+        for(Map<String, Integer> m : input) {
+            for(String s : m.KeySet()) {
+                if(listMap.containsKey(s)) {
+                    list2.add(m.get(s));
+                    listMap.put(s, list2);
+                }
+                else {
+                    
+                    list2.add(m.get(s));
+                    //system.debug('List')
+                    listMap.put(s, list2);
+                }
+            }
+        }
+        system.debug('List 1 : ' + list1);
+        system.debug('List 2 : ' + list2);
+    }
