@@ -1,0 +1,161 @@
+//MAP Questions
+    //Question 14 :  Find all pairs of values where the keys are common between two Maps.
+    //Input: Map<String, Integer> map1 = {'A' => 1, 'B' => 2};
+    //Map<String, Integer> map2 = {'B' => 3, 'C' => 4};
+    public static void commonKeys() {
+        Map<String, Integer> inputMap1 = new Map<String, Integer>{'A' => 1, 'B' => 2};
+            Map<String, Integer> inputMap2 = new Map<String, Integer>{'B' => 3, 'C' => 4};
+                List<Integer> list1 = new List<Integer>();
+        for(String s : inputMap1.KeySet()) {
+            if(inputMap2.containsKey(s)) {
+                list1.add(inputMap1.get(s));
+                list1.add(inputMap2.get(s));
+            }
+        }
+        system.debug(list1);
+    }
+    
+    //Question 15 : Given a List of Maps, combine them by summing values for common keys.
+    //Input : List<Map<String, Integer>> maps = [{A => 1}, {A => 2, B => 3}];
+    //Output : {A => 3, B => 3}
+    public static void sumValuesWithSameKeys() {
+        List<Map<String, Integer>> maps = new List<Map<String, Integer>>{new Map<String, Integer>{'A' => 5}, new Map<String, Integer>{'A' => 2, 'B' => 3}};
+        Map<String, Integer> finalMap = new Map<String, Integer>();
+        for(Map<String, Integer> m : maps) {
+            for(String s : m.KeySet()) {
+                if(!finalMap.containsKey(s)) {
+                    finalMap.put(s, m.get(s));
+                }
+                else {
+                    finalMap.put(s, m.get(s) + finalMap.get(s));
+                }
+            }
+        }
+        system.debug(finalMap);
+    }
+    
+    //Question 14 : Write a method that simulates a cache, where each item is a key-value pair stored in a Map.
+    public static void cacheMap() {
+        Map<String, String> cache = new Map<String, String>();
+        cache.put('Key1', 'value1');
+        String s = null;
+        for(String a : cache.KeySet()) {
+            s = cache.get(a);
+        }
+        system.debug(s);
+    }
+    
+    //Question 16 : Write a method to find the minimum value in a Map.
+    public static void minValueInMap(Integer j) {
+        Map<String, Integer> inputMap = new Map<String, Integer>{'A' => 3, 'B' => 2};
+            for(Integer i : inputMap.values()) {
+                if(i < j) {
+                   j = i; 
+                }
+            }
+        system.debug(j);
+    }
+
+    //Question 17 :  Write a method to return the elements present in one Set but not in another.
+    //Input: Set<Integer> set1 = {1, 2, 3}; Set<Integer> set2 = {2, 3, 4};
+    //Output: {1}
+    public static void diffBwSets() {
+        Set<Integer> set1 = new Set<Integer>{1, 2, 3}; 
+            Set<Integer> set2 = new Set<Integer>{2, 3, 4};
+                Set<Integer> finalSet = new Set<Integer>();
+        
+        for (Integer i : set1) {
+            if (!set2.contains(i)) {
+                finalSet.add(i);
+            }
+        }
+        system.debug(finalSet);
+    }
+    
+    //Question 22 : Write a method to calculate the symmetric difference (elements present in one Set or the other, but not both) of two Sets.
+    //Input: Set<Integer> set1 = {1, 2, 3}; Set<Integer> set2 = {3, 4, 5};
+    //Output: {1, 2, 4, 5}
+    public static void elementInOneSet() {
+        Set<Integer> set1 = new Set<Integer> {1, 2, 3}; 
+            Set<Integer> set2 = new Set<Integer>{3, 4, 5};
+                Set<Integer> finalSet = new Set<Integer>();
+        finalSet.addAll(set1);
+                    Set<Integer> aSet = new Set<Integer>();
+        for(Integer i : set2) {
+            if(finalSet.contains(i)) {
+                aSet.add(i);
+            }
+            else {
+                finalSet.add(i);
+            }
+        }
+        finalSet.removeAll(aSet);
+        system.debug(finalSet);
+    }
+    
+    //Question 18 :  Given a nested Map, write a method to invert it.
+    //Input : Map<String, Map<String, Integer>> map = {'outer' =>{'inner1' => 1, 'inner2' => 2}};
+    public static void nestedMap() {
+        Map<String, Map<String, Integer>> map1 = new Map<String, Map<String, Integer>>{'outer' => new Map<String, Integer>{'inner1' => 1, 'inner2' => 2}};
+            Map<String, Map<String, Integer>> finalMap = new Map<String, Map<String, Integer>>();
+        for(String s : map1.KeySet()) {
+            Map<String, Integer> map2 = map1.get(s);
+            for(String s1 : map2.KeySet()) {
+                Integer i = map2.get(s1);
+                Map<String, Integer> map3 = new Map<String, Integer>();
+                map3.put(s, i);
+                finalMap.put(s1, map3);
+            }
+        }
+        system.debug(finalMap);
+            }
+    
+    //Question 19 :  Find all keys in a Map where the value is greater than the average value of the Map.
+    //Input : Map<String, Integer> map = {'A' => 10, 'B' => 15, 'C' => 20};
+    public static void maxValueInMap() {
+        Map<String, Integer> input = new Map<String, Integer>{'A' => 10, 'B' => 15, 'C' => 20};
+            Integer x = 0;
+        for(Integer i : input.values()) {
+            x = i + x;
+        }
+        Integer avg = x/input.size();
+        List<String> sList = new List<String>();
+        for(String s : input.KeySet()) {
+            Integer y = input.get(s);
+            if(y >= avg) {
+                sList.add(s);
+            }
+        }
+        system.debug(sList);
+    } 
+    
+    //Question 20 :  Write a method that counts how many times each value appears in a Map.
+    //Input : Map<String, Integer> map = {'A' => 10, 'B' => 15, 'C' => 10};
+    public static void freqOfValueInMap() {
+        Map<String, Integer> map1 = new Map<String, Integer>{'A' => 10, 'B' => 15, 'C' => 10};
+        Map<Integer, Integer> freqMap = new Map<Integer, Integer>();
+        for(Integer value : map1.values()) {
+            if(freqMap.containsKey(value)) {
+                freqMap.put(value, freqMap.get(value) + 1);
+            }
+            else {
+                freqMap.put(value, 1);
+            }
+        }
+        system.debug(freqMap);
+    }
+    
+    //Question 24 : Write a method to remove all elements in a List that also exist in a given Set.
+    //Input : List<Integer> list = [1, 2, 3]; Set<Integer> set = {2, 3};
+    public static void removeDuplicates() {
+        List<Integer> inputList = new List<Integer>{1,2,3};
+            Set<Integer> set1 = new Set<Integer>{2,3};
+        
+        List<Integer> list1 = new List<Integer>();
+        for(Integer i : inputList) {
+            if(!set1.contains(i)) {
+                list1.add(i);
+            }
+        }
+        system.debug(list1);
+    }
