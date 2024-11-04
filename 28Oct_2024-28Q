@@ -272,3 +272,227 @@ public class Oct28_2024 {
         }
         system.debug(finalList);
     }
+
+//Question 31 : Write a method to find common elements across multiple Lists using Sets.
+    public static void commonInLists() {
+        List<Integer> list1 = new List<Integer>{1, 2, 3};
+            List<Integer> list2 = new List<Integer>{2, 3, 4};
+                List<Integer> list3 = new List<Integer>{3, 4, 5};
+                    
+                    Set<Integer> set1 = new Set<Integer>();
+        Set<Integer> set2 = new Set<Integer>();
+        Set<Integer> set3 = new Set<Integer>();
+        set1.addAll(list1);
+        set2.addAll(list2);
+        set3.addAll(list3);
+        
+        set1.retainAll(set2);
+        set1.retainAll(set3);
+        system.debug(set1);
+    }
+    
+    //Question 32 :  Group elements of a List by their frequency and return the elements sorted by their occurrence count using a Map.
+    public static void frequencyAndOccurence() {
+        List<Integer> input = new List<Integer>{1,2,2,3,3,3,3};
+            Map<Integer, Integer> map1 = new Map<Integer, Integer>();
+        for(Integer i : input) {
+            if(map1.containsKey(i)) {
+                map1.put(i, map1.get(i) + 1);
+            }
+            else {
+                map1.put(i, 1);
+            }
+        }
+        List<Integer> finalList = new List<Integer>();
+        for(Integer i : map1.KeySet()) {
+            finalList.add(i);
+        }
+        finalList.sort();
+        List<integer> fList = new List<integer>();
+        for(Integer i = finalList.size() - 1; i >= 0; i--){
+            fList.add(finalList[i]);
+        }
+        system.debug(fList);
+    }
+    
+    //Question 35 :  Write a method that returns the element with the maximum frequency in a List using a Map.
+    public static void elementWithMaxFreq() {
+         List<Integer> input = new List<Integer>{1, 2, 2, 3, 3, 3};
+             Map<Integer, Integer> map1 = new Map<Integer, Integer>();
+        for(Integer i : input) {
+            if(map1.containsKey(i)) {
+                map1.put(i, map1.get(i) + 1);
+            }
+            else {
+                map1.put(i, 1);
+            }
+        }
+        //system.debug('Map : ' + map1);
+        
+        List<Integer> finalList = new List<Integer>();
+        for(Integer i : map1.KeySet()) {
+                finalList.add(i);
+        }
+        //system.debug('Final List : ' + finalList);
+        system.debug('Frequency : ' + finalList[finalList.size()-1]);
+    }
+    
+    //Question 36 : Write a method that converts a List of custom objects into a Map where the key is a field of the object.
+    public static void listFromMap() {
+        List<Account> accounts = [SELECT Id, Name FROM Account LIMIT 2];
+        Map<Id, Account> accountMap = new Map<Id, Account>();
+        for(Account acc : accounts) {
+            accountMap.put(acc.Id, acc);
+        }
+        system.debug(accountMap);
+    }
+    
+    //Question 37 : Write a method that finds elements in one List that are missing from another List using a Set.
+    public static void missingFromList() {
+        List<Integer> list1 = new List<Integer>{1, 2, 3};
+            List<Integer> list2 = new List<Integer>{2, 3, 4};
+                Set<Integer> set1 = new Set<Integer>();
+        List<Integer> finalList = new List<Integer>();
+        set1.addAll(list2);
+        for(Integer i : list1) {
+            if(!set1.contains(i)) {
+                finalList.add(i);
+            }
+        }
+        system.debug(finalList);
+    }
+    
+    //Question 38 : Write a method to filter a Map's entries based on a condition applied to the values.
+    public static void filteredMap() {
+        Map<String, Integer> inputMap = new Map<String, Integer>{'A' => 1, 'B' => 3};
+            String key;
+        Integer value;
+        for(String s : inputMap.KeySet()) {
+            if(inputMap.get(s) > 2) {
+                system.debug(s + ' => ' + inputMap.get(s));
+            }
+        }
+    }
+    
+    //Question 39 : Write a method that groups a List of strings by the length of each string using a Map.
+    
+    //Question 40 : Write a method that finds the first non-repeated element in a List of integers using a Map.
+    public static void nonRepeatedElement() {
+         List<Integer> input = new List<Integer>{1, 2, 2, 3, 3, 4, 4};
+        Map<Integer, Integer> inputMap = new Map<Integer, Integer>();
+        for(Integer i : input) {
+            if(inputMap.containsKey(i)) {
+                inputMap.put(i, inputMap.get(i) + 1);
+            }
+            else {
+                inputMap.put(i, 1);
+            }
+        }
+        List<Integer> finalList = new List<Integer>();
+        for(Integer j : inputMap.KeySet()) {
+            if(inputMap.get(j) == 1) {
+                finalList.add(j);
+            }
+        }
+        system.debug(finalList);
+    }
+    
+    //Question 42 : Write a method to check if the numbers in a List form a geometric progression using a Set.
+    public static void geometricProgression() {
+        List<Integer> input = new List<Integer>{2, 4, 8};
+            Boolean check = false;
+            for(Integer i = input.size()-1; i > 0; i--) {
+                if(input[i] == input[i-1] * 2) {
+                    check = true;
+                }
+            }
+        if(check) {
+            system.debug('True');
+        }
+        else {
+            system.debug('False');
+        }
+    }
+    
+    //Question 18 :  Given a List, return the N most frequent elements using a Map.
+    public static void nMostFreq() {
+        List<Integer> input = new List<Integer>{1, 2, 2, 3, 3, 3};
+            Map<Integer, Integer> newMap = new Map<Integer, Integer>();
+        for(Integer i : input) {
+            if(newMap.containsKey(i)) {
+                newMap.put(i, newMap.get(i) + 1);
+            }
+               else {
+                   newMap.put(i, 1);
+               }
+        }
+        List<Integer> occList = new List<Integer>();
+        for(Integer i : newMap.keySet()) {
+            if(newMap.containsKey(i)) {
+                occList.add(newmap.get(i));
+            }
+        }
+        occList.sort();
+        List<Integer> iList = new List<Integer>();
+        for(Integer i = occList.size()-1; i > 0; i--) {
+            if(occList[i] > occList[i-1]) {
+                iList.add(occList[i]);
+            }
+        }
+        system.debug(iList);
+    }
+    
+    //Question 39 : Write a method that groups a List of strings by the length of each string using a Map.
+    public static void abc() {
+        List<String> list1 = new List<String>{'apple', 'banana', 'pear', 'fig'};
+        Map<Integer, String> newMap = new Map<Integer, String>();
+        for(String s : list1) {
+            Integer length = s.length();
+            newMap.put(length, s);
+        }
+        system.debug(newMap);
+    }
+    
+    //Question 45 : Write a method that checks if two Lists have no elements in common using a Set.
+    public static void disJoint() {
+        List<Integer> list1 = new List<Integer>{1, 2, 3};
+            List<Integer> list2 = new List<Integer>{3, 5, 6};
+                Set<Integer> Set1 = new Set<Integer>();
+        List<Integer> finalList = new List<Integer>();
+        set1.addAll(list2);
+        Boolean check = false;
+        for(Integer i : list1) {
+            if(!set1.contains(i)) {
+                finalList.add(i);
+            }
+        }
+        if(!finalList.isEmpty()) {
+            system.debug('False');
+        }
+        else {
+            system.debug('True');
+        }
+                }
+    
+    //Question 15 : Given two Maps, find keys present in one Map but not the other.
+    public static void findKeys() {
+        Map<String, Integer> inputMap1 = new Map<String, Integer>();
+        Map<String, Integer> inputMap2 = new Map<String, Integer>();
+        inputMap1.put('A', 1);
+        inputMap1.put('B', 2);
+        inputMap2.put('B', 2);
+        inputMap2.put('C', 3);
+        List<String> iList = new List<String>();
+        for(String s : inputMap1.KeySet()) {
+            if(!inputMap2.containsKey(s)) {
+                iList.add(s);
+            }
+        }
+        
+        for(String s : inputMap2.KeySet()) {
+            if(!inputMap1.containsKey(s)) {
+                iList.add(s);
+            }
+        }
+        system.debug(iList);
+    }
