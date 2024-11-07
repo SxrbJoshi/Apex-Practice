@@ -1,0 +1,106 @@
+//Question 4 :  Find all unique triplets in a List of integers that sum up to a target value.
+    //Input : List<Integer> list = new List<Integer>{-1, 0, 1, 2,-1,-4}; int target = 0;
+    //Output: [[-1, 0, 1], [-1,-1, 2]]
+    public static void tripletsWithEqualSum(Integer target) {
+        List<Integer> input = new List<Integer>{-1, 0, 1, 2,-1,-4};
+        List<List<Integer>> finalList = new List<List<Integer>>();
+        input.sort();
+        for(Integer i = 0; i < input.size(); i++) {
+            if(i > 0 && input[i] == input[i-1]) {
+                continue;
+            }
+            Integer left = i + 1;
+            Integer right = input.size() - 1;
+            while(left < right) {
+                Integer sum = input[i] + input[left] + input[right];
+                if(sum == target) {
+                    finalList.add(new List<Integer>{input[i], input[left], input[right]});
+                    
+                    while(left < right && input[left] == input[left + 1]) {
+                        left++;
+                    }
+                    while(left < right && input[right] == input[right - 1]) {
+                        right--;
+                    }
+                    left++;
+                    right--;
+                }
+                else if(sum < target) {
+                    left++;
+                }
+                else {
+                    right--;
+                }
+            }
+        }
+        system.debug(finalList);
+    }
+    
+    //Question 26 :  Write a method to find the longest increasing subsequence of a List of integers (not necessarily consecutive).
+    //Input: List<Integer> list = [10, 9, 2, 5, 3, 7, 101, 18];
+    public static void longestSequence() {
+        List<Integer> input = new List<Integer>{10, 9, 2, 5, 3, 7, 101, 18};
+            List<Integer> demoList = new List<Integer>();
+        for (Integer i = 0; i < input.size(); i++) {
+            demoList.add(1); 
+        }
+        for (Integer i = 1; i < input.size(); i++) {
+            for (Integer j = 0; j < i; j++) {
+                if (input[i] > input[j]) {
+                    demoList[i] = Math.max(demoList[i], demoList[j] + 1);
+                }
+            }
+        }        
+        Integer lisLength = 0;
+        for (Integer i = 0; i < input.size(); i++) {
+            lisLength = Math.max(lisLength, demoList[i]);
+        }
+        system.debug(lisLength);
+    }
+    
+    //Question 23 :  Write a method to compute the Jaccard index (intersection divided by union) of two Sets.
+    //Input : Set<Integer> set1 = {1, 2, 3}; Set<Integer> set2 = {2, 3, 4};
+    //Output: 0.5
+    public static void jaccardIndex() {
+        Set<Integer> set1 = new Set<Integer>{1, 2, 3};
+        Set<Integer> set2 = new Set<Integer>{2, 3, 4};
+        
+        Set<Integer> intersection = new Set<Integer>(set1);
+        Set<Integer> union = new Set<Integer>(set1);
+        
+        intersection.retainAll(set2);
+        union.addAll(set2);
+        
+        system.debug((Double)intersection.size()/union.size());
+    }
+    
+    //Question 10 : Write a method to replace each element in a List with the next greatest element to its right.
+    //Input : List<Integer> list = new List<Integer>{4, 5, 2, 10, 8};
+    public static void gretestElementToRight() {
+        List<Integer> input = new List<Integer>{4, 5, 2, 10, 8};
+        Integer maxRight = 0;
+        for(Integer i = input.size() - 1; i >= 0; i--) {
+            Integer element = input[i];
+            input[i] = maxRight;
+            maxRight = Math.max(maxRight, element);
+        }
+        system.debug(input);
+    }
+    
+    //Question 16 : Given a List of Sets of integers, find the smallest range that includes at least one number from each Set.
+    //Input: List<Set<Integer>> sets = [{4, 10, 15}, {1, 5, 8}, {7, 9}];
+    public static void newSetFromSets() {
+        List<Set<Integer>> inputList = new List<Set<Integer>>{new Set<Integer>{4, 10, 15}, new Set<Integer>{1, 5, 8}, new Set<Integer>{7, 9}};
+        List<Integer> combineList = new List<Integer>();
+        for(Set<Integer> sets : inputList) {
+            for(Integer i : sets) {
+                combineList.add(i);
+            }
+        }
+        combineList.sort();
+        for(Integer i = 0; i < combineList.size() - 1; i++) {
+            for(Integer j = combineList[i]; j <= combineList[i+1]; j++) {
+                
+            }
+        }
+    }
